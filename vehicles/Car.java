@@ -1,6 +1,6 @@
 package vehicles;
 import exceptions.*;
-public class Car extends LandVehicle implements FuelConsumable, PassengerCarrier, Maintainable{
+public class Car extends LandVehicle implements FuelConsumable, PassengerCarrier, Maintainable {
   private double fuelLevel;
   private int passengerCapacity;
   private int currentPassengers;
@@ -80,6 +80,13 @@ public class Car extends LandVehicle implements FuelConsumable, PassengerCarrier
     } catch (InsufficientFuelException e) {
     System.out.println("The Car " + getId() + " cannot move: " + e.getMessage());
   }
+}
+public void addmileage(double amt) {
+    try {
+        addMileage(amt);
+    } catch (InvalidOperationException e) {
+        System.out.println("error" + e);
+    }
 }
 //setters
 public void setFuelLevel(double fuelLevel) {
