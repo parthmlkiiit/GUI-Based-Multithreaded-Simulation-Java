@@ -60,11 +60,11 @@ class Main {
     fleetmanager.addVehicle(newv4);
 
     
-    fleetmanager.refuelAll(100.00, 100.00, 100.00);
+    fleetmanager.refuelAll(10.00, 10.00, 10.00);
     running = true;
 
     Thread t1 = new Thread(() -> {
-      while (running && (newv1.getFuelLevel() > 0)){
+      while (running){
         if (paused) {
           try {
             Thread.sleep(200); // just wait while paused
@@ -75,6 +75,18 @@ class Main {
           break;
           }
     }
+            if (newv1.getFuelLevel() <= 0) {
+            Main.ui.updateCar(0,(int)newv1.getCurrentMileage(),(int)newv1.getFuelLevel(),(newv1.getFuelLevel() > 0) ? "running" : "out of fuel");
+
+            try {
+                Thread.sleep(200); // keep checking for refuel
+                continue;
+            } 
+            catch (InterruptedException e) {
+                System.out.println(e);
+                break;
+            }
+        }
         newv1.addmileage(1); // 1 km per tick or sec
         newv1.setFuelLevel(newv1.getFuelLevel() - 1);  //1L per tick or sec
         Main.addresult(1);
@@ -91,7 +103,7 @@ class Main {
       }
     });
     Thread t2 = new Thread(() -> { 
-      while (running && (newv2.getFuelLevel() > 0)){
+      while (running){
         if (paused) {
           try {
             Thread.sleep(200); // just wait while paused
@@ -102,6 +114,18 @@ class Main {
           break;
           }
     }
+     if (newv2.getFuelLevel() <= 0) {
+            Main.ui.updateCar(0,(int)newv2.getCurrentMileage(),(int)newv2.getFuelLevel(),(newv2.getFuelLevel() > 0) ? "running" : "out of fuel");
+
+            try {
+                Thread.sleep(200); // keep checking for refuel
+                continue;
+            } 
+            catch (InterruptedException e) {
+                System.out.println(e);
+                break;
+            }
+        }
         newv2.addmileage(1); // 1 km per tick or sec
         newv2.setFuelLevel(newv2.getFuelLevel() - 1);  //1L per tick or sec
         Main.addresult(1);
@@ -116,7 +140,7 @@ class Main {
       }
     });
     Thread t3 = new Thread(() -> { 
-      while (running && (newv3.getFuelLevel() > 0)){
+      while (running){
         if (paused) {
           try {
             Thread.sleep(200); // just wait while paused
@@ -127,6 +151,18 @@ class Main {
           break;
           }
     }
+     if (newv3.getFuelLevel() <= 0) {
+            Main.ui.updateCar(0,(int)newv3.getCurrentMileage(),(int)newv3.getFuelLevel(),(newv3.getFuelLevel() > 0) ? "running" : "out of fuel");
+
+            try {
+                Thread.sleep(200); // keep checking for refuel
+                continue;
+            } 
+            catch (InterruptedException e) {
+                System.out.println(e);
+                break;
+            }
+        }
         newv3.addmileage(1); // 1 km per tick or sec
         newv3.setFuelLevel(newv3.getFuelLevel() - 1);  //1L per tick or sec
         Main.addresult(1);
@@ -141,7 +177,7 @@ class Main {
         }
       }
      });
-    Thread t4 = new Thread(() -> { while (running && (newv4.getFuelLevel() > 0)){
+    Thread t4 = new Thread(() -> { while (running){
       if (paused) {
           try {
             Thread.sleep(200); // just wait while paused
@@ -152,6 +188,18 @@ class Main {
           break;
           }
     }
+     if (newv4.getFuelLevel() <= 0) {
+            Main.ui.updateCar(0,(int)newv4.getCurrentMileage(),(int)newv4.getFuelLevel(),(newv4.getFuelLevel() > 0) ? "running" : "out of fuel");
+
+            try {
+                Thread.sleep(200); // keep checking for refuel
+                continue;
+            } 
+            catch (InterruptedException e) {
+                System.out.println(e);
+                break;
+            }
+        }
         newv4.addmileage(1); // 1 km per tick or sec
         newv4.setFuelLevel(newv4.getFuelLevel() - 1);  //1L per tick or sec
         Main.addresult(1);

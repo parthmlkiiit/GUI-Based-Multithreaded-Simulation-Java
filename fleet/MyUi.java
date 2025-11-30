@@ -39,7 +39,7 @@ public class MyUi extends JFrame {
               
               }); 
             stopbtn.addActionListener(e -> {Main.running = false;});
-            refuelbtn.addActionListener(e -> {Main.fleetmanager.refuelAll(100.00, 100.00, 100.00);});
+            refuelbtn.addActionListener(e -> {Main.fleetmanager.refuelAll(15.00, 15.00, 15.00);});
             topbar.add(startbtn);
             topbar.add(pausebtn);
             topbar.add(stopbtn);
@@ -82,8 +82,8 @@ public class MyUi extends JFrame {
       JPanel temppanel = new JPanel(new GridLayout(3,1));// rows, col
       temppanel.setBorder(BorderFactory.createTitledBorder(title));
       mileagelabels[idx] = (new JLabel("Mileage: 0 KM"));
-      fuellabels[idx] = (new JLabel("Fuel: 100%"));
-      statuslabels[idx] = (new JLabel("Status: Running"));
+      fuellabels[idx] = (new JLabel("Fuel: 0L"));
+      statuslabels[idx] = (new JLabel("Status: out of fuel"));
       temppanel.add(mileagelabels[idx]);
       temppanel.add(fuellabels[idx]);
       temppanel.add(statuslabels[idx]);
@@ -102,7 +102,7 @@ public class MyUi extends JFrame {
     public void updateCar(int idx, int mileage, int fuel, String status) {
         SwingUtilities.invokeLater(() -> {
             mileagelabels[idx].setText("Mileage: " + mileage + " KM");
-            fuellabels[idx].setText("Fuel: " + fuel + "%");
+            fuellabels[idx].setText("Fuel: " + fuel + "L");
             statuslabels[idx].setText("Status: " + status);
         });
     }
